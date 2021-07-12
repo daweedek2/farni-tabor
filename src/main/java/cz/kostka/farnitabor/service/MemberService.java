@@ -37,7 +37,7 @@ public class MemberService {
     }
 
     public Member getById(final Long id) {
-        return memberRepository.getById(id);
+        return memberRepository.getOne(id);
     }
 
     public List<MemberDto> getAllMembersDtos() {
