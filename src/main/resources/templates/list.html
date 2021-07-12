@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments/head :: head('Farní tábor Valašská Polanka 2021')">
+</head>
+<body>
+<div th:insert="fragments/header :: header()"></div>
+<div class="container">
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Jméno</th>
+                    <th scope="col">Barva týmu</th>
+                    <th scope="col">Stav</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${members.empty}">
+                    <td colspan="5"><p>V systému nejsou táborníci</p></td>
+                </tr>
+                <th:block th:each="member : ${members}">
+                    <tr>
+                        <td th:text="${member.name}"></td>
+                        <td th:text="${member.group.czechColor}"></td>
+                        <td th:text="${member.progress + '%'}"></td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

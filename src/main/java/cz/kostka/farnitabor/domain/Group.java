@@ -4,22 +4,22 @@ package cz.kostka.farnitabor.domain;
  * Created by dkostka on 7/8/2021.
  */
 public enum Group {
-    A("Modrá"),
-    B("Zelená"),
-    C("Červená"),
-    D("Oranžová");
+    RED("Červená"),
+    GREEN("Zelená"),
+    BLUE("Modrá"),
+    YELLOW("Žlutá");
 
-    private String colour;
+    private String czechColor;
 
-    Group(final String colour) {
-        this.colour = colour;
+    Group(final String czechColor) {
+        this.czechColor = czechColor;
     }
 
-    public String getColour() {
-        return colour;
+    public String getCzechColor() {
+        return czechColor;
     }
 
-    public void setColour(final String colour) {
-        this.colour = colour;
+    public void setCzechColor(final String czechColor) {
+        this.czechColor = czechColor;
     }
 }

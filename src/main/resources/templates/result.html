@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments/head :: head('Farní tábor Valašská Polanka 2021')">
+</head>
+<div th:insert="fragments/header :: header()"></div>
+<body style="min-height: 100%">
+<div class="container">
+    <div class="row">
+        <div th:if="${memberDto.foundPlacesCount < 2}" class="col-sm-12">
+            <div class="container">
+                <img style="display: block; margin-left: auto; margin-right: auto;" width="150" height="150"
+                     th:src="@{/img/farni_tabor_game.png}"/>
+                <div>
+                    <br>
+                    <p style="text-align: center">Skvělé, k odemknutí barvy tvého týmu zbývá ještě jeden správný kód.</p>
+                </div>
+            </div>
+        </div>
+        <div th:if="${memberDto.foundPlacesCount >= 2}" class="col-sm-12">
+            <div class="container">
+                <div>
+                    <br>
+                    <img th:if="${memberDto.group.name() == 'RED'}"
+                         style="display: block; margin-left: auto; margin-right: auto;" width="150" height="150"
+                         th:src="@{/img/farni_tabor_red.jpg}"/>
+                    <img th:if="${memberDto.group.name() == 'YELLOW'}"
+                         style="display: block; margin-left: auto; margin-right: auto;" width="150" height="150"
+                         th:src="@{/img/farni_tabor_yellow.jpg}"/>
+                    <img th:if="${memberDto.group.name() == 'GREEN'}"
+                         style="display: block; margin-left: auto; margin-right: auto;" width="150" height="150"
+                         th:src="@{/img/farni_tabor_green.jpg}"/>
+                    <img th:if="${memberDto.group.name() == 'BLUE'}"
+                         style="display: block; margin-left: auto; margin-right: auto;" width="150" height="150"
+                         th:src="@{/img/farni_tabor_blue.jpg}"/>
+                </div>
+                <br>
+                <p style="text-align: center">Skvělé, barva tvého týmu je <b><i><span th:text="${memberDto.group.czechColor}"></span></i></b></p>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="w3-container">
+                <div class="w3-light-grey w3-round-xlarge" width="250">
+                    <div class="w3-container w3-green w3-round-xlarge" th:style="|width:${memberDto.progress}%|" th:text="${memberDto.progress} + ' %'">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <br><br><br>
+            <div>
+                <a th:href="@{/}" class="btn btn-secondary">Zpět</a>
+            </div>
+            <div>
+                <a href="https://en.mapy.cz/s/habejafola" class="btn btn-secondary">Mapa míst</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <br>
+        <h3>Souřadnice míst</h3>
+    </div>
+    <div th:each="place : ${places}">
+        <p>
+            <span th:text="${place.name + ':'}"></span>
+            <span style="float:right" th:utext="${place.coordinates}"></span>
+        </p>
+    </div>
+</div>
+</body>
+</html>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by dkostka on 7/8/2021.
@@ -21,5 +22,9 @@ public class PlaceService {
 
     public List<Place> getAll() {
         return placeRepository.findAll();
+    }
+
+    public Optional<Place> getByCode(final String code) {
+        return placeRepository.findPlaceByCode(code);
     }
 }
