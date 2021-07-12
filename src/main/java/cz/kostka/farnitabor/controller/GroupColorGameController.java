@@ -1,6 +1,8 @@
 package cz.kostka.farnitabor.controller;
 
 import cz.kostka.farnitabor.domain.Member;
+import cz.kostka.farnitabor.dto.MemberDto;
+import cz.kostka.farnitabor.dto.OverviewDto;
 import cz.kostka.farnitabor.dto.ValidationDto;
 import cz.kostka.farnitabor.service.MemberService;
 import cz.kostka.farnitabor.service.PlaceService;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 /**
  * Created by dkostka on 7/8/2021.
@@ -51,8 +55,17 @@ public class GroupColorGameController {
 
     @GetMapping("/list")
     public String getMembersList(final Model model) {
-        model.addAttribute("members", memberService.getAllMembersDtos());
+        final var memberDtos = memberService.getAllMembersDtos();
+        model.addAttribute(
+                "overview",
+                new OverviewDto(getDoneMembersCount(memberDtos), memberDtos));
         return "list";
+    }
+
+    private int getDoneMembersCount(final List<MemberDto> memberDtos) {
+        return (int) memberDtos.stream()
+                .filter(members -> members.getFoundPlacesCount() >= 2)
+                .count();
     }
 
     @PostMapping("/validate")
