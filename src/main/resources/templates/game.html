@@ -36,6 +36,9 @@
                 <br>
                 <h3>Souřadnice míst</h3>
             </div>
+            <div th:if="${places.empty}">
+                <p>V systému nejsou zadaná místa.</p>
+            </div>
             <div th:each="place : ${places}">
                 <p>
                 <span th:text="${place.name + ':'}"></span>
