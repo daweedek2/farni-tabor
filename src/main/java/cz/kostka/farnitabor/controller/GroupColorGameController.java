@@ -85,7 +85,7 @@ public class GroupColorGameController {
             return "redirect:success";
         }
 
-        final var placeOpt = placeService.getByCode(dto.getCode());
+        final var placeOpt = placeService.getByCode(dto.getCode().toLowerCase());
         if (placeOpt.isEmpty()) {
             redirectAttributes.addFlashAttribute(FAIL_ATTR, true);
             redirectAttributes.addFlashAttribute(
