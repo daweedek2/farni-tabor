@@ -24,7 +24,7 @@
             <th:block th:each="member : ${overview.members}">
                 <tr th:if="${member.progress != 100}">
                     <td th:text="${member.name}"></td>
-                    <td th:text="${member.group.czechColor}"></td>
+                    <td th:text="${member.group.czechColor}" th:style="|background: ${member.group}|"></td>
                     <td th:text="${member.progress + '%'}"></td>
                 </tr>
             </th:block>
@@ -48,7 +48,7 @@
             <th:block th:each="member : ${overview.members}">
                 <tr th:if="${member.progress == 100}">
                     <td th:text="${member.name}"></td>
-                    <td th:text="${member.group.czechColor}"></td>
+                    <td th:text="${member.group.czechColor}" th:style="|background: ${member.group}|"></td>
                     <td th:text="${member.progress + '%'}"></td>
                 </tr>
             </th:block>
