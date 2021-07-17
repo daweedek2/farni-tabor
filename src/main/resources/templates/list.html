@@ -12,19 +12,21 @@
         <table class="table">
             <thead class="thead-light">
             <tr>
-                <th scope="col">Jméno</th>
-                <th scope="col">Barva týmu</th>
-                <th scope="col">Stav</th>
+                <th class="col-5">Jméno</th>
+                <th class="col-5">Barva týmu</th>
+                <th class="col-1">Tým</th>
+                <th class="col-1">Stav</th>
             </tr>
             </thead>
             <tbody>
             <tr th:if="${overview.members.empty}">
                 <td colspan="5"><p>V systému nejsou táborníci</p></td>
             </tr>
-            <th:block th:each="member : ${overview.members}">
+            <th:block th:each="member : ${overview.members}" th:style="|color: ${member.group}|">
                 <tr th:if="${member.progress != 100}">
                     <td th:text="${member.name}"></td>
-                    <td th:text="${member.group.czechColor}" th:style="|background: ${member.group}|"></td>
+                    <td th:text="${member.group.czechColor}"></td>
+                    <td th:style="|background: ${member.group}|"></td>
                     <td th:text="${member.progress + '%'}"></td>
                 </tr>
             </th:block>
@@ -36,9 +38,10 @@
         <table class="table">
             <thead class="thead-light">
             <tr>
-                <th scope="col">Jméno</th>
-                <th scope="col">Barva týmu</th>
-                <th scope="col">Stav</th>
+                <th class="col-5">Jméno</th>
+                <th class="col-5">Barva týmu</th>
+                <th class="col-1">Tým</th>
+                <th class="col-1">Stav</th>
             </tr>
             </thead>
             <tbody>
@@ -48,7 +51,8 @@
             <th:block th:each="member : ${overview.members}">
                 <tr th:if="${member.progress == 100}">
                     <td th:text="${member.name}"></td>
-                    <td th:text="${member.group.czechColor}" th:style="|background: ${member.group}|"></td>
+                    <td th:text="${member.group.czechColor}"></td>
+                    <td th:style="|background: ${member.group}|"></td>
                     <td th:text="${member.progress + '%'}"></td>
                 </tr>
             </th:block>
