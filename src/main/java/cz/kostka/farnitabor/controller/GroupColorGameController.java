@@ -70,7 +70,7 @@ public class GroupColorGameController {
 
     @PostMapping("/validate")
     public String validate(final @ModelAttribute ValidationDto dto, final RedirectAttributes redirectAttributes) {
-        final var memberOptional = memberService.findByName(dto.getName());
+        final var memberOptional = memberService.findByName(dto.getName().trim());
         if (memberOptional.isEmpty()) {
             redirectAttributes.addFlashAttribute(FAIL_ATTR, true);
             redirectAttributes.addFlashAttribute(
