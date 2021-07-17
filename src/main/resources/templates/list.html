@@ -31,6 +31,30 @@
             </tbody>
         </table>
     </div>
+    <h4>Dokončili:</h4>
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Jméno</th>
+                <th scope="col">Barva týmu</th>
+                <th scope="col">Stav</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${overview.members.empty}">
+                <td colspan="5"><p>V systému nejsou táborníci</p></td>
+            </tr>
+            <th:block th:each="member : ${overview.members}">
+                <tr th:if="${member.progress == 100}">
+                    <td th:text="${member.name}"></td>
+                    <td th:text="${member.group.czechColor}"></td>
+                    <td th:text="${member.progress + '%'}"></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>
