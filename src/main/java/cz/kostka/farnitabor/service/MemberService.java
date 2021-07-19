@@ -8,6 +8,7 @@ import cz.kostka.farnitabor.utils.MemberDtoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,6 +44,7 @@ public class MemberService {
     public List<MemberDto> getAllMembersDtos() {
         return getAll().stream()
                 .map(MemberDtoUtil::convertMemberToDto)
+                .sorted(Comparator.comparing(MemberDto::getGroup))
                 .collect(Collectors.toList());
     }
 
